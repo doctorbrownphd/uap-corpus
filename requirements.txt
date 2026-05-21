@@ -15,6 +15,15 @@ umap-learn>=0.5.0
 requests>=2.32.0
 beautifulsoup4>=4.12.0
 
+# Dashboard (streamlit run dashboard.py)
+streamlit>=1.35.0
+plotly>=5.22.0
+pydeck>=0.9.0
+
+# PDF build (python writeup/build_pdf.py)
+weasyprint>=62.0
+markdown>=3.6
+
 # Dev
 pytest>=8.0.0
 black>=24.0.0

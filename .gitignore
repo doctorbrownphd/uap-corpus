@@ -30,6 +30,9 @@ __pycache__/
 # IDE
 .idea/
 
+# Dev / WIP
+dashboard-v2/
+
 # Temp
 *.log
 .pytest_cache/
