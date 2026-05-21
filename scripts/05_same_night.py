@@ -34,12 +34,7 @@ import pandas as pd
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.metrics.pairwise import cosine_similarity
 
-ROOT = Path(__file__).resolve().parent.parent
-CLEAN_PATH = ROOT / "data" / "interim" / "nuforc_clean.parquet"
-EMBED_PATH = ROOT / "data" / "embeddings" / "nuforc_embeddings.parquet"
-DERIVED_DIR = ROOT / "data" / "derived"
-CHART_DIR = ROOT / "outputs" / "charts"
-TABLE_DIR = ROOT / "outputs" / "tables"
+from common import ROOT, CLEAN_PATH, EMBED_PATH, DERIVED_DIR, CHART_DIR, TABLE_DIR, load_embeddings
 
 # Clustering parameters
 MIN_REPORTS_PER_DATE = 3       # need at least 3 reports to attempt clustering
@@ -55,13 +50,8 @@ def load_data() -> tuple[pd.DataFrame, dict[str, np.ndarray]]:
     print(f"  {len(df):,} reports")
 
     print(f"Reading {EMBED_PATH}...")
-    emb_df = pd.read_parquet(EMBED_PATH)
-    print(f"  {len(emb_df):,} embeddings")
-
-    # Build lookup: source_id -> numpy vector
-    emb_lookup = {}
-    for _, row in emb_df.iterrows():
-        emb_lookup[row["source_id"]] = np.array(row["embedding"], dtype=np.float32)
+    emb_lookup = load_embeddings(EMBED_PATH)
+    print(f"  {len(emb_lookup):,} embeddings")
 
     # Filter df to only rows with embeddings
     has_emb = df["source_id"].isin(emb_lookup)

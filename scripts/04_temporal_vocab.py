@@ -33,10 +33,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-ROOT = Path(__file__).resolve().parent.parent
-IN_PATH = ROOT / "data" / "interim" / "nuforc_clean.parquet"
-CHART_DIR = ROOT / "outputs" / "charts"
-TABLE_DIR = ROOT / "outputs" / "tables"
+from common import ROOT, CLEAN_PATH, CHART_DIR, TABLE_DIR
+
+IN_PATH = CLEAN_PATH
 
 # --- Vocabulary ---
 # Terms grouped by category. Each term is a regex pattern (case-insensitive).

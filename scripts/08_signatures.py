@@ -30,95 +30,9 @@ import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-ROOT = Path(__file__).resolve().parent.parent
-CLEAN_PATH = ROOT / "data" / "interim" / "nuforc_clean.parquet"
-CLUSTER_PATH = ROOT / "data" / "derived" / "clusters_same_night.parquet"
-DERIVED_DIR = ROOT / "data" / "derived"
-CHART_DIR = ROOT / "outputs" / "charts"
-TABLE_DIR = ROOT / "outputs" / "tables"
+from common import ROOT, CLEAN_PATH, DERIVED_DIR, CHART_DIR, TABLE_DIR, KNOWN_EVENTS
 
-# Known events to fingerprint
-# Each: name, date range, optional state filter, optional shape filter
-KNOWN_EVENTS = [
-    {
-        "name": "Phoenix Lights (1997)",
-        "start": "1997-03-10",
-        "end": "1997-03-20",
-        "states": ["AZ", "NV"],
-    },
-    {
-        "name": "Illinois Triangle (2000)",
-        "start": "2000-01-04",
-        "end": "2000-01-08",
-        "states": ["IL"],
-    },
-    {
-        "name": "Stephenville TX (2008)",
-        "start": "2008-01-01",
-        "end": "2008-01-31",
-        "states": ["TX"],
-    },
-    {
-        "name": "O'Hare Airport (2006)",
-        "start": "2006-11-01",
-        "end": "2006-12-31",
-        "states": ["IL"],
-    },
-    {
-        "name": "Tinley Park IL (2004)",
-        "start": "2004-10-25",
-        "end": "2004-11-07",
-        "states": ["IL"],
-    },
-    {
-        "name": "Hudson Valley (1982-86)",
-        "start": "1982-01-01",
-        "end": "1986-12-31",
-        "states": ["NY", "CT", "NJ"],
-    },
-    {
-        "name": "Belgian Wave (1989-90)",
-        "start": "1989-11-01",
-        "end": "1990-04-30",
-        "states": None,  # no state filter — international reports that slipped through
-    },
-    {
-        "name": "Trident Missile CA (2015)",
-        "start": "2015-11-07",
-        "end": "2015-11-09",
-        "states": ["CA", "AZ", "NV"],
-    },
-    {
-        "name": "SpaceX Launch CA (2017)",
-        "start": "2017-12-22",
-        "end": "2017-12-24",
-        "states": ["CA", "AZ"],
-    },
-    {
-        "name": "July 4th Lanterns (2012)",
-        "start": "2012-07-03",
-        "end": "2012-07-05",
-        "states": None,
-    },
-    {
-        "name": "Leonid Meteors (1999)",
-        "start": "1999-11-16",
-        "end": "1999-11-19",
-        "states": None,
-    },
-    {
-        "name": "Starlink Trains (2020)",
-        "start": "2020-03-01",
-        "end": "2020-06-30",
-        "states": None,
-    },
-    {
-        "name": "NJ Drones (2024-era reports)",
-        "start": "2023-06-01",
-        "end": "2023-12-31",
-        "states": ["NJ", "NY"],
-    },
-]
+CLUSTER_PATH = ROOT / "data" / "derived" / "clusters_same_night.parquet"
 
 
 def load_data() -> pd.DataFrame:

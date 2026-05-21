@@ -29,6 +29,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from common import US_STATES
+
 ROOT = Path(__file__).resolve().parent.parent
 IN_PATH = ROOT / "data" / "raw" / "nuforc.csv"
 OUT_PATH = ROOT / "data" / "interim" / "nuforc_clean.parquet"
@@ -201,14 +203,7 @@ def main():
     if US_ONLY:
         # NUFORC reports use "us" or empty country for US; treat empty
         # country with a valid US state code as US
-        us_states = {
-            "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID",
-            "IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS",
-            "MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK",
-            "OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV",
-            "WI","WY","DC",
-        }
-        is_us = (df["country"] == "us") | df["state"].isin(us_states)
+        is_us = (df["country"] == "us") | df["state"].isin(US_STATES)
         for sid in df.loc[~is_us, "source_id"]:
             drops.append((sid, "non_us"))
         n_before = len(df)

@@ -37,12 +37,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-ROOT = Path(__file__).resolve().parent.parent
-CLEAN_PATH = ROOT / "data" / "interim" / "nuforc_clean.parquet"
-EMBED_PATH = ROOT / "data" / "embeddings" / "nuforc_embeddings.parquet"
-DERIVED_DIR = ROOT / "data" / "derived"
-CHART_DIR = ROOT / "outputs" / "charts"
-TABLE_DIR = ROOT / "outputs" / "tables"
+from common import ROOT, CLEAN_PATH, EMBED_PATH, DERIVED_DIR, CHART_DIR, TABLE_DIR
 
 # HDBSCAN parameters
 MIN_CLUSTER_SIZE = 200
@@ -69,7 +64,9 @@ def load_data() -> tuple[pd.DataFrame, np.ndarray, list[str]]:
     emb_df = pd.read_parquet(EMBED_PATH)
 
     # Align: only keep reports that have embeddings
-    emb_dict = {row["source_id"]: row["embedding"] for _, row in emb_df.iterrows()}
+    emb_dict = {
+        sid: vec for sid, vec in zip(emb_df["source_id"], emb_df["embedding"])
+    }
     mask = df["source_id"].isin(emb_dict)
     df = df[mask].reset_index(drop=True)
 

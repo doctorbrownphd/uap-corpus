@@ -28,106 +28,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parent.parent
-CLEAN_PATH = ROOT / "data" / "interim" / "nuforc_clean.parquet"
+from common import ROOT, CLEAN_PATH, DERIVED_DIR, TABLE_DIR, KNOWN_EVENTS
+
 CLUSTER_PATH = ROOT / "data" / "derived" / "clusters_same_night.parquet"
 FLAP_PATH = ROOT / "data" / "derived" / "flaps.parquet"
 SIG_PATH = ROOT / "outputs" / "tables" / "known_event_signatures.csv"
-TABLE_DIR = ROOT / "outputs" / "tables"
-
-# Ground-truth events with expected properties
-KNOWN_EVENTS = [
-    {
-        "name": "Phoenix Lights",
-        "date": "1997-03-13",
-        "date_range": ("1997-03-10", "1997-03-20"),
-        "states": ["AZ"],
-        "expected_shape": "triangle",
-        "expected_phrases": ["phoenix lights", "white lights", "air force"],
-        "type": "unexplained",
-    },
-    {
-        "name": "Tinley Park IL Lights",
-        "date": "2004-10-31",
-        "date_range": ("2004-10-25", "2004-11-07"),
-        "states": ["IL"],
-        "expected_shape": "light",
-        "expected_phrases": ["red lights", "tinley park", "triangle formation"],
-        "type": "unexplained",
-    },
-    {
-        "name": "Stephenville TX",
-        "date": "2008-01-08",
-        "date_range": ("2008-01-01", "2008-01-31"),
-        "states": ["TX"],
-        "expected_shape": "light",
-        "expected_phrases": ["fort worth", "miles away"],
-        "type": "unexplained",
-    },
-    {
-        "name": "O'Hare Airport Disc",
-        "date": "2006-11-07",
-        "date_range": ("2006-11-01", "2006-12-31"),
-        "states": ["IL"],
-        "expected_shape": "disc",
-        "expected_phrases": ["object hovering"],
-        "type": "unexplained",
-    },
-    {
-        "name": "Hudson Valley Wave",
-        "date": "1984-07-01",
-        "date_range": ("1982-01-01", "1986-12-31"),
-        "states": ["NY", "CT"],
-        "expected_shape": "triangle",
-        "expected_phrases": ["white lights", "new york"],
-        "type": "unexplained",
-    },
-    {
-        "name": "Trident Missile Launch",
-        "date": "2015-11-07",
-        "date_range": ("2015-11-07", "2015-11-09"),
-        "states": ["CA", "AZ", "NV"],
-        "expected_shape": "light",
-        "expected_phrases": ["navy missile", "missile launch"],
-        "type": "prosaic",
-    },
-    {
-        "name": "SpaceX Vandenberg Launch",
-        "date": "2017-12-22",
-        "date_range": ("2017-12-22", "2017-12-24"),
-        "states": ["CA", "AZ"],
-        "expected_shape": "light",
-        "expected_phrases": ["vandenberg", "rocket launch"],
-        "type": "prosaic",
-    },
-    {
-        "name": "Leonid Meteor Shower 1999",
-        "date": "1999-11-17",
-        "date_range": ("1999-11-16", "1999-11-19"),
-        "states": None,
-        "expected_shape": "fireball",
-        "expected_phrases": ["meteor shower"],
-        "type": "prosaic",
-    },
-    {
-        "name": "Starlink Satellite Trains",
-        "date": "2020-04-15",
-        "date_range": ("2020-03-01", "2020-06-30"),
-        "states": None,
-        "expected_shape": "formation",
-        "expected_phrases": ["straight line", "evenly spaced", "single file"],
-        "type": "prosaic",
-    },
-    {
-        "name": "July 4th Chinese Lanterns 2012",
-        "date": "2012-07-04",
-        "date_range": ("2012-07-03", "2012-07-05"),
-        "states": None,
-        "expected_shape": "fireball",
-        "expected_phrases": ["watching fireworks", "bright orange"],
-        "type": "prosaic",
-    },
-]
 
 
 def check_in_clusters(event: dict, clusters: pd.DataFrame,

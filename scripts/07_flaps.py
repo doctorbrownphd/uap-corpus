@@ -30,12 +30,7 @@ import matplotlib.dates as mdates
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parent.parent
-CLEAN_PATH = ROOT / "data" / "interim" / "nuforc_clean.parquet"
-EMBED_PATH = ROOT / "data" / "embeddings" / "nuforc_embeddings.parquet"
-DERIVED_DIR = ROOT / "data" / "derived"
-CHART_DIR = ROOT / "outputs" / "charts"
-TABLE_DIR = ROOT / "outputs" / "tables"
+from common import ROOT, CLEAN_PATH, EMBED_PATH, DERIVED_DIR, CHART_DIR, TABLE_DIR, load_embeddings
 
 # Detection parameters
 MIN_YEAR = 1990          # before this, data is too sparse for rate analysis
@@ -52,10 +47,7 @@ def load_data() -> tuple[pd.DataFrame, dict[str, np.ndarray]]:
     print(f"Loaded {len(df):,} reports ({MIN_YEAR}-{df['event_year'].max()})")
 
     # Embeddings for coherence scoring
-    emb_df = pd.read_parquet(EMBED_PATH)
-    emb_lookup = {}
-    for _, row in emb_df.iterrows():
-        emb_lookup[row["source_id"]] = np.array(row["embedding"], dtype=np.float32)
+    emb_lookup = load_embeddings(EMBED_PATH)
     return df, emb_lookup
 
 
