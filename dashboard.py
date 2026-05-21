@@ -50,7 +50,11 @@ def load_clusters():
 def load_flaps():
     path = ROOT / "data/derived/flaps.parquet"
     if path.exists():
-        return pd.read_parquet(path)
+        df = pd.read_parquet(path)
+        df["start"] = pd.to_datetime(df["start"])
+        df["end"] = pd.to_datetime(df["end"])
+        df["year"] = df["start"].dt.year
+        return df
     return None
 
 @st.cache_data(ttl=3600)
@@ -204,7 +208,7 @@ elif page == "Corpus Explorer":
     if shapes:
         mask &= df["shape_norm"].isin(shapes)
     if search:
-        mask &= df["narrative"].str.contains(search, case=False, na=False)
+        mask &= df["narrative"].str.contains(search, case=False, na=False, regex=False)
 
     filtered = df[mask]
     st.markdown(f"**{len(filtered):,}** reports match")
@@ -325,10 +329,6 @@ elif page == "Flaps Map":
 
     flaps_df = load_flaps()
     if flaps_df is not None:
-        flaps_df["start"] = pd.to_datetime(flaps_df["start"])
-        flaps_df["end"] = pd.to_datetime(flaps_df["end"])
-        flaps_df["year"] = flaps_df["start"].dt.year
-
         # Timeline
         st.subheader("National reporting rate with flaps")
         yr_national = df.groupby("event_year").size().reset_index(name="reports")

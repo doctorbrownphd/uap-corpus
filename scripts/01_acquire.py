@@ -131,6 +131,12 @@ def detect_schema(df: pd.DataFrame) -> str:
     return best
 
 
+def make_source_id(row) -> str:
+    """Stable hash of a row's identifying fields for dedup across acquisitions."""
+    key = f"{row['datetime']}|{row['city']}|{row['state']}|{str(row['comments'])[:200]}"
+    return hashlib.sha1(key.encode("utf-8", errors="ignore")).hexdigest()[:16]
+
+
 def parse_kcimc_location(loc: str) -> tuple[str, str, str]:
     """Split 'City, ST, Country' into (city, state, country).
     Handles variations like 'City, ST' or just 'City'."""
@@ -173,13 +179,7 @@ def normalize(df: pd.DataFrame, schema_name: str) -> pd.DataFrame:
         if extra in df.columns:
             extras.append(extra)
 
-    # Source id is a stable hash of the row's identifying fields, so we can
-    # dedup if multiple acquisitions are merged later.
-    def row_hash(row):
-        key = f"{row['datetime']}|{row['city']}|{row['state']}|{str(row['comments'])[:200]}"
-        return hashlib.sha1(key.encode("utf-8", errors="ignore")).hexdigest()[:16]
-
-    df["source_id"] = df.apply(row_hash, axis=1)
+    df["source_id"] = df.apply(make_source_id, axis=1)
     return df[canonical + extras + ["source_id"]]
 
 
@@ -280,11 +280,7 @@ def load_jsonl_scrape(jsonl_path: Path, index_path: Path | None = None) -> pd.Da
         "explanation":      merged.get("explanation", pd.Series([""] * len(merged))).fillna("").astype(str),
     })
 
-    # Stable source_id
-    def row_hash(row):
-        key = f"{row['datetime']}|{row['city']}|{row['state']}|{str(row['comments'])[:200]}"
-        return hashlib.sha1(key.encode("utf-8", errors="ignore")).hexdigest()[:16]
-    out["source_id"] = out.apply(row_hash, axis=1)
+    out["source_id"] = out.apply(make_source_id, axis=1)
 
     canonical = [
         "datetime", "city", "state", "country", "shape",
