@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-density="regular">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>One Hundred Years of UFO Witness Reports — UAP Corpus Dashboard</title>
+
+<!-- SEO -->
+<meta name="description" content="Interactive dashboard for a corpus-linguistics analysis of 111,961 NUFORC witness narratives spanning 1905–2023. Explore vocabulary eras, same-night clusters, narrative archetypes, and flap detection.">
+<meta name="keywords" content="UAP, UFO, NUFORC, corpus linguistics, NLP, witness reports, dashboard, data visualization">
+<meta name="author" content="Jeremy Haynes">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="One Hundred Years of UFO Witness Reports">
+<meta property="og:description" content="A corpus-linguistics analysis of 111,961 NUFORC witness narratives. Interactive dashboard with vocabulary tracking, same-night clustering, and narrative archetypes.">
+<meta property="og:url" content="https://onehundredyears.report">
+<meta property="og:site_name" content="UAP Corpus">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One Hundred Years of UFO Witness Reports">
+<meta name="twitter:description" content="111,961 witness narratives analyzed as a sociolinguistic corpus. Interactive dashboard.">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://onehundredyears.report">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="src/styles.css">
+
+<style>
+  /* Preload: hide body until React mounts to avoid FOUC */
+  #root:empty::after {
+    content: "Loading dashboard…";
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React 18 production builds -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<!-- Data -->
+<script src="src/data.js"></script>
+
+<!-- Tweaks shell -->
+<script type="text/babel" src="src/tweaks-panel.jsx"></script>
+
+<!-- Shared primitives -->
+<script type="text/babel" src="src/shared.jsx"></script>
+
+<!-- Visualization components -->
+<script type="text/babel" src="src/TileMap.jsx"></script>
+<script type="text/babel" src="src/USMap.jsx"></script>
+<script type="text/babel" src="src/Timeline.jsx"></script>
+
+<!-- Tabs -->
+<script type="text/babel" src="src/Overview.jsx"></script>
+<script type="text/babel" src="src/Vocabulary.jsx"></script>
+<script type="text/babel" src="src/Geography.jsx"></script>
+<script type="text/babel" src="src/Archetypes.jsx"></script>
+<script type="text/babel" src="src/SameNight.jsx"></script>
+<script type="text/babel" src="src/Validation.jsx"></script>
+<script type="text/babel" src="src/Narratives.jsx"></script>
+
+<!-- Main app -->
+<script type="text/babel" src="src/app.jsx"></script>
+
+</body>
+</html>

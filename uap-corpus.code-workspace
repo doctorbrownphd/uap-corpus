@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "UAP Corpus",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "window.title": "UAP Corpus — ${activeEditorShort}${separator}${rootName}"
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "ms-toolsai.jupyter",
+      "ms-toolsai.datawrangler",
+      "mechatroner.rainbow-csv"
+    ]
+  }
+}

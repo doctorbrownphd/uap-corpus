@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.black-formatter",
+    "ms-python.debugpy",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.datawrangler",
+    "charliermarsh.ruff",
+    "tamasfe.even-better-toml",
+    "yzhang.markdown-all-in-one",
+    "redhat.vscode-yaml",
+    "njpwerner.autodocstring",
+    "streetsidesoftware.code-spell-checker",
+    "mechatroner.rainbow-csv"
+  ],
+  "unwantedRecommendations": [
+    "ms-python.pylint"
+  ]
+}

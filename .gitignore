@@ -1,0 +1,35 @@
+# Data (too large / not redistributed)
+data/raw/*.csv
+data/raw/*.jsonl
+data/raw/*.json
+data/raw/*.log
+!data/raw/PROVENANCE.md
+data/interim/
+data/embeddings/
+data/derived/
+
+# Outputs (regenerable from pipeline)
+outputs/charts/*.png
+outputs/tables/*.csv
+
+# Build artifacts
+writeup/*.pdf
+writeup/*.html
+writeup/paper.css
+site/paper.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+
+# Temp
+*.log
+.pytest_cache/
