@@ -90,10 +90,25 @@ function App() {
       {/* Top bar */}
       <header className="topbar">
         <div className="brand">
-          <div className="brand-mark" />
+          {/* Chronicle decade ruler icon */}
+          <a href="https://onehundredyears.report" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <svg width="14" height="56" viewBox="0 0 18 72" style={{ marginRight: 14 }}>
+              <line x1="0" y1="0" x2="0" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
+              <line x1="0" y1="0"  x2="12" y2="0"  stroke="var(--accent)" strokeWidth="1.5"/>
+              <line x1="0" y1="8"  x2="7"  y2="8"  stroke="var(--accent)" strokeWidth="0.8"/>
+              <line x1="0" y1="16" x2="7"  y2="16" stroke="var(--accent)" strokeWidth="0.8"/>
+              <line x1="0" y1="24" x2="12" y2="24" stroke="var(--accent)" strokeWidth="1.5"/>
+              <line x1="0" y1="32" x2="7"  y2="32" stroke="var(--accent)" strokeWidth="0.8"/>
+              <line x1="0" y1="40" x2="7"  y2="40" stroke="var(--accent)" strokeWidth="0.8"/>
+              <line x1="0" y1="48" x2="12" y2="48" stroke="var(--accent)" strokeWidth="1.5"/>
+              <line x1="0" y1="56" x2="7"  y2="56" stroke="var(--accent)" strokeWidth="0.8"/>
+              <line x1="0" y1="64" x2="7"  y2="64" stroke="var(--accent)" strokeWidth="0.8"/>
+              <line x1="0" y1="72" x2="12" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
+            </svg>
+          </a>
           <div className="brand-title">
-            <span>The corpus</span>
-            <b>One Hundred Years of UFO Witness Reports</b>
+            <span style={{ fontFamily: "'Cormorant Garamond', var(--f-serif)", fontWeight: 600, letterSpacing: "0.25em", fontSize: 10, color: "var(--accent)" }}>One Hundred Years of</span>
+            <b style={{ fontFamily: "'Playfair Display', var(--f-serif)", letterSpacing: "-0.01em" }}>UFO Witness Reports</b>
           </div>
         </div>
         <div className="topbar-right">
