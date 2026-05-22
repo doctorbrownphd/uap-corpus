@@ -84,8 +84,8 @@ function GeographyTab({ data, tt, selectedState, onSelectState }) {
               </div>
               <div className="kvline">
                 <span className="k">per-capita anomaly</span>
-                <span className="v" style={{ color: stateData.anom > 1.5 ? "var(--accent)" : "var(--text-0)" }}>
-                  {stateData.anom.toFixed(2)}×
+                <span className="v" style={{ color: (stateData.anom || 1) > 1.5 ? "var(--accent)" : "var(--text-0)" }}>
+                  {(stateData.anom || 1).toFixed(2)}×
                 </span>
               </div>
               <div className="kvline">
@@ -109,7 +109,7 @@ function GeographyTab({ data, tt, selectedState, onSelectState }) {
                 <div>
                   <b>{s.name}</b>
                   <div className="ttkv"><span>reports</span><b>{fmt(s.count)}</b></div>
-                  <div className="ttkv"><span>anomaly</span><b>{s.anom.toFixed(2)}×</b></div>
+                  <div className="ttkv"><span>anomaly</span><b>{(s.anom || 1).toFixed(2)}×</b></div>
                 </div>
               )}
               onLeave={tt.hide}

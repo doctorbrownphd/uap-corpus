@@ -1,7 +1,7 @@
 // OVERVIEW TAB — landing view
 // Lede + reports/year timeline + shapes + geography + featured narratives
 
-function OverviewTab({ data, tt, onJumpTab, onSelectState, onSelectArchetype, onSelectFlap }) {
+function OverviewTab({ data, tt, onJumpTab, onSelectState, onSelectArchetype }) {
   const [yearHover, setYearHover] = useState(null);
   const featuredFlags = [
     { date: "1947", label: "Arnold" },
@@ -139,7 +139,7 @@ function OverviewTab({ data, tt, onJumpTab, onSelectState, onSelectArchetype, on
                   {fmt(s.count)}
                 </div>
                 <div className="mono" style={{ fontSize: 11, color: "var(--text-2)" }}>
-                  {s.anom > 1.5 ? `${s.anom.toFixed(1)}× anomaly` : `${fmtPct(s.count / data.headline.total_reports * 100)} of corpus`}
+                  {(s.anom || 1) > 1.5 ? `${(s.anom || 1).toFixed(1)}× anomaly` : `${fmtPct(s.count / data.headline.total_reports * 100)} of corpus`}
                 </div>
               </div>
             ))}
