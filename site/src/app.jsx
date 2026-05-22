@@ -184,14 +184,29 @@ function App() {
         borderTop: "1px solid var(--border-1)",
         background: "var(--bg-1)",
         marginTop: 40,
+        display: "flex", alignItems: "center", gap: 14,
       }}>
-        <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center" }}>
+        {/* Chronicle logo (small) */}
+        <a href="https://onehundredyears.report" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
+          <svg width="12" height="36" viewBox="0 0 18 72">
+            <line x1="0" y1="0" x2="0" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
+            <line x1="0" y1="0"  x2="12" y2="0"  stroke="var(--accent)" strokeWidth="1.5"/>
+            <line x1="0" y1="24" x2="12" y2="24" stroke="var(--accent)" strokeWidth="1.5"/>
+            <line x1="0" y1="48" x2="12" y2="48" stroke="var(--accent)" strokeWidth="1.5"/>
+            <line x1="0" y1="72" x2="12" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
+          </svg>
+          <span style={{ fontFamily: "'Cormorant Garamond', var(--f-serif)", fontSize: 11, color: "var(--text-2)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            One Hundred Years
+          </span>
+        </a>
+        <div style={{ marginLeft: "auto", display: "flex", gap: 18, alignItems: "center" }}>
           <a href="/paper.pdf" target="_blank" rel="noopener" style={{ textDecoration: "none" }}>
             <Tag tone="accent">paper PDF</Tag>
           </a>
-          <Tag>license · MIT</Tag>
-          <Tag>github · uap-corpus</Tag>
-          <Tag>onehundredyears.report</Tag>
+          <Tag>MIT</Tag>
+          <a href="https://github.com/doctorbrownphd/uap-corpus" target="_blank" rel="noopener" style={{ textDecoration: "none" }}>
+            <Tag>GitHub</Tag>
+          </a>
         </div>
       </footer>
 
