@@ -206,6 +206,22 @@ function App() {
                    value={query} onChange={(e) => setQuery(e.target.value)} />
             <kbd>⌘K</kbd>
           </div>
+          <button
+            className="theme-toggle"
+            onClick={() => setTweak("theme", t.theme === "dark" ? "light" : "dark")}
+            title={t.theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            style={{
+              background: "none", border: "1px solid var(--border-1)",
+              color: "var(--text-2)", cursor: "pointer",
+              fontFamily: "var(--f-mono)", fontSize: 11,
+              padding: "4px 10px", borderRadius: 3,
+              display: "flex", alignItems: "center", gap: 6,
+              whiteSpace: "nowrap", flexShrink: 0,
+            }}
+          >
+            <span style={{ fontSize: 14, lineHeight: 1 }}>{t.theme === "dark" ? "\u2600" : "\u263E"}</span>
+            <span>{t.theme === "dark" ? "light" : "dark"}</span>
+          </button>
           <div className="topbar-meta">
             <span><span className="live-dot" />OPEN PIPELINE · REPRODUCIBLE</span>
             <span>READING: PASSIVE / CULTURAL-PRIMING / OBSERVATIONAL</span>
