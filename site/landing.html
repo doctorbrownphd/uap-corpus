@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1440" />
+<title>One Hundred Years — A reporting series</title>
+
+<!-- SEO -->
+<meta name="description" content="One hundred years of data. Analyzed. Visualized. Open. A reporting series — ten datasets, each one a question the historical record can finally answer.">
+<meta name="author" content="Jeremy Haynes">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="One Hundred Years — A reporting series">
+<meta property="og:description" content="Ten datasets. Each one a question the historical record can finally answer. Independent. No ads, no tracking, no paywall.">
+<meta property="og:url" content="https://onehundredyears.report">
+<meta property="og:site_name" content="One Hundred Years">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One Hundred Years — A reporting series">
+<meta name="twitter:description" content="Ten datasets. Each one a question the historical record can finally answer.">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://onehundredyears.report/">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italianno&family=Space+Mono:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;0,8..60,800;1,8..60,300;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0A0F1A;
+    --bg-warm: #0D1119;
+    --bg-2: #0E1422;
+    --bg-3: #131A2B;
+    --ink: #E6ECF2;
+    --ink-dim: #8BAFC7;
+    --ink-dimmer: #4E6A82;
+    --line: #1B2740;
+    --line-2: #243353;
+    --gold: #C9A84C;
+    --gold-dim: #8a743a;
+    --cold: #74ADD1;
+    --hot: #D73027;
+    --hot-deep: #A50026;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg-warm); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; }
+  body {
+    min-width: 1440px;
+    overflow-x: auto;
+    font-variant-numeric: tabular-nums;
+    background-color: #0B1019;
+    background-image:
+      radial-gradient(rgba(139,175,199,0.022) 1px, transparent 1px),
+      radial-gradient(rgba(201,168,76,0.012) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+  }
+  .mono { font-family: 'Space Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  .serif { font-family: 'Source Serif 4', Georgia, serif; }
+  ::selection { background: rgba(201,168,76,0.35); color: #fff; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+  @keyframes pulseRing {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+  @keyframes drift { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes evidence-in {
+    0% { opacity: 0.35; transform: translateY(6px); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  /* Preload: hide body until React mounts to avoid FOUC */
+  #root:empty::after {
+    content: "Loading…";
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh;
+    font-family: "Space Mono", monospace;
+    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #4E6A82;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React 18 production builds -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<!-- Landing page scripts -->
+<script type="text/babel" src="src/landing-data.jsx"></script>
+<script type="text/babel" src="src/landing-hero.jsx"></script>
+<script type="text/babel" src="src/landing-cards.jsx"></script>
+<script type="text/babel" src="src/landing.jsx"></script>
+
+</body>
+</html>
