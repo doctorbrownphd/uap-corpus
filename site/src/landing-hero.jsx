@@ -222,14 +222,14 @@ function TopMeta() {
           color: '#8BAFC7', fontSize: 11, letterSpacing: 0.18, textTransform: 'uppercase',
           textDecoration: 'none', borderBottom: '1px solid transparent',
         }}>Archive</a>
-        <span className="mono" style={{
-          color: '#4E6A82', fontSize: 11, letterSpacing: 0.18, textTransform: 'uppercase',
-          cursor: 'default',
-        }}>Methodology</span>
-        <span className="mono" style={{
-          color: '#4E6A82', fontSize: 11, letterSpacing: 0.18, textTransform: 'uppercase',
-          cursor: 'default',
-        }}>Newsletter</span>
+        <a className="mono" href="#methodology" style={{
+          color: '#8BAFC7', fontSize: 11, letterSpacing: 0.18, textTransform: 'uppercase',
+          textDecoration: 'none',
+        }}>Methodology</a>
+        <a className="mono" href="#newsletter" style={{
+          color: '#8BAFC7', fontSize: 11, letterSpacing: 0.18, textTransform: 'uppercase',
+          textDecoration: 'none',
+        }}>Newsletter</a>
         <a className="mono" href="https://github.com/doctorbrownphd" target="_blank" rel="noopener" style={{
           color: '#C9A84C', fontSize: 11, letterSpacing: 0.18, textTransform: 'uppercase',
           textDecoration: 'none', border: '1px solid #C9A84C', padding: '6px 12px',
