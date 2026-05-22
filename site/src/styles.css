@@ -695,6 +695,37 @@ input[type="range"].slider::-webkit-slider-thumb {
   box-shadow: 0 0 0 2px var(--bg-0), 0 0 8px var(--accent-line);
 }
 
+/* ─── splash screen ───────────────────────────────────────────────── */
+.splash {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 500ms;
+}
+.splash.out { opacity: 0; pointer-events: none; }
+.splash-dark { background: #0A0A0A; }
+.splash-number {
+  font-variant-numeric: tabular-nums;
+  animation: fadeSlideIn 800ms ease both;
+}
+.splash-label {
+  animation: fadeSlideIn 600ms ease 2s both;
+}
+.splash-title {
+  animation: fadeSlideIn 600ms ease 3.5s both;
+}
+.splash-thesis {
+  animation: fadeSlideIn 600ms ease 4s both;
+}
+.splash-enter {
+  animation: fadeSlideIn 600ms ease 5.5s both;
+  cursor: pointer;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* responsive */
 @media (max-width: 1240px) {
   .statrow { grid-template-columns: repeat(3, 1fr); }

@@ -1,3 +1,82 @@
+// Splash screen — cinematic 3-beat intro, shown once per session
+function SplashScreen({ onDismiss }) {
+  const [out, setOut] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  // After beat 3 starts (3.5s), allow click dismiss
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 3500);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Any key dismisses immediately
+  useEffect(() => {
+    const onKey = () => dismiss();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  function dismiss() {
+    sessionStorage.setItem("corpus_ufo_seen", "1");
+    setOut(true);
+    setTimeout(onDismiss, 500);
+  }
+
+  return (
+    <div className={"splash splash-dark" + (out ? " out" : "")}
+         onClick={() => ready && dismiss()}>
+      {/* Chronicle ruler icon — top left */}
+      <a href="https://onehundredyears.report"
+         style={{ position: "absolute", top: 24, left: 24, textDecoration: "none" }}
+         onClick={e => e.stopPropagation()}>
+        <svg width="14" height="56" viewBox="0 0 18 72">
+          <line x1="0" y1="0" x2="0" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
+          <line x1="0" y1="0"  x2="12" y2="0"  stroke="var(--accent)" strokeWidth="1.5"/>
+          <line x1="0" y1="8"  x2="7"  y2="8"  stroke="var(--accent)" strokeWidth="0.8"/>
+          <line x1="0" y1="16" x2="7"  y2="16" stroke="var(--accent)" strokeWidth="0.8"/>
+          <line x1="0" y1="24" x2="12" y2="24" stroke="var(--accent)" strokeWidth="1.5"/>
+          <line x1="0" y1="32" x2="7"  y2="32" stroke="var(--accent)" strokeWidth="0.8"/>
+          <line x1="0" y1="40" x2="7"  y2="40" stroke="var(--accent)" strokeWidth="0.8"/>
+          <line x1="0" y1="48" x2="12" y2="48" stroke="var(--accent)" strokeWidth="1.5"/>
+          <line x1="0" y1="56" x2="7"  y2="56" stroke="var(--accent)" strokeWidth="0.8"/>
+          <line x1="0" y1="64" x2="7"  y2="64" stroke="var(--accent)" strokeWidth="0.8"/>
+          <line x1="0" y1="72" x2="12" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
+        </svg>
+      </a>
+
+      <div className="splash-number" style={{
+        fontSize: "min(120px, 18vw)", fontWeight: 300, color: "#fff",
+        fontFamily: "'IBM Plex Serif', ui-serif, Georgia, serif",
+        fontVariantNumeric: "tabular-nums", letterSpacing: "-0.02em",
+      }}>112,000</div>
+
+      <div className="splash-label" style={{
+        fontFamily: "'IBM Plex Serif', ui-serif, Georgia, serif",
+        fontSize: 18, color: "rgba(255,255,255,0.5)", letterSpacing: "0.08em",
+        marginTop: 8,
+      }}>witness accounts</div>
+
+      <div className="splash-title" style={{
+        fontFamily: "'Playfair Display', 'IBM Plex Serif', Georgia, serif",
+        fontSize: "min(36px, 5vw)", fontWeight: 500, color: "#fff",
+        marginTop: 48, textAlign: "center", maxWidth: 640, lineHeight: 1.2,
+      }}>One Hundred Years of UFO Witness Reports</div>
+
+      <div className="splash-thesis" style={{
+        fontFamily: "'IBM Plex Serif', ui-serif, Georgia, serif",
+        fontSize: 15, color: "rgba(255,255,255,0.45)", textAlign: "center",
+        maxWidth: 520, lineHeight: 1.6, marginTop: 16,
+      }}>A sociolinguistic corpus. 118 years of data. Analyzed. Visualized. Open.</div>
+
+      <div className="splash-enter" style={{
+        fontFamily: "'IBM Plex Mono', ui-monospace, monospace",
+        fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase",
+        color: "rgba(255,255,255,0.5)", marginTop: 64,
+      }}>ENTER THE CORPUS →</div>
+    </div>
+  );
+}
+
 // Main App — assembles shell, tab routing, search, tweaks
 
 const TABS = [
@@ -18,6 +97,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 
 function App() {
+  const [splashDone, setSplashDone] = useState(!!sessionStorage.getItem("corpus_ufo_seen"));
   const data = window.UAP_DATA;
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [tab, setTab] = useState("overview");
@@ -71,6 +151,10 @@ function App() {
   const onSelectArchetype = (id) => { setSelectedArchetype(id); };
 
   const tabProps = { data, tt, query, onJumpTab, onSelectState, onSelectArchetype };
+
+  if (!splashDone) {
+    return <SplashScreen onDismiss={() => setSplashDone(true)} />;
+  }
 
   return (
     <>
