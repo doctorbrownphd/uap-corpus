@@ -39,7 +39,7 @@ const ISSUES_LIVE = [
     viz: 'name-waves',
     discovery: 'Mildred \u00B7 peaked 1912 at 4,200/yr \u00B7 zero by 1988',
     refreshed: '11 weeks ago',
-    href: 'https://hundred-years-names.pages.dev',
+    href: 'https://names.onehundredyears.report',
   },
   {
     n: '03', slug: 'color-line',
