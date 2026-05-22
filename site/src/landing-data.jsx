@@ -15,7 +15,7 @@ const ISSUES_LIVE = [
       ['+2.34\u00B0F', 'TODAY VS BASELINE'],
       ['7.9\u03C3', 'PORTLAND, 06/2021'],
     ],
-    href: 'https://atmosphere.onehundredyears.report',
+    href: 'https://uap-corpus.pages.dev',
     viz: 'anomaly-bars',
     discovery: 'Portland, OR \u00B7 116\u00B0F \u00B7 nine degrees beyond any prior record',
     refreshed: '14 days ago',
@@ -39,7 +39,7 @@ const ISSUES_LIVE = [
     viz: 'name-waves',
     discovery: 'Mildred \u00B7 peaked 1912 at 4,200/yr \u00B7 zero by 1988',
     refreshed: '11 weeks ago',
-    href: 'https://names.onehundredyears.report',
+    href: 'https://hundred-years-names.pages.dev',
   },
   {
     n: '03', slug: 'color-line',

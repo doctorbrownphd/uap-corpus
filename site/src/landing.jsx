@@ -398,9 +398,9 @@ function LandingFooter() {
         <div style={{ display: 'flex', gap: 40 }}>
           <FooterColumn title="Issues">
             <FooterLink href="https://ufo.onehundredyears.report">01 · UFO Witness Reports</FooterLink>
-            <FooterLink href="https://names.onehundredyears.report">02 · American Names</FooterLink>
+            <FooterLink href="https://hundred-years-names.pages.dev">02 · American Names</FooterLink>
             <FooterLink href="https://colorline.onehundredyears.report">03 · The Color Line</FooterLink>
-            <FooterLink href="https://atmosphere.onehundredyears.report" highlight>04 · The Atmosphere · NEW</FooterLink>
+            <FooterLink href="https://uap-corpus.pages.dev" highlight>04 · The Atmosphere · NEW</FooterLink>
             <FooterLink muted>05 · American Homicide</FooterLink>
             <FooterLink muted>06 · Disaster Declarations</FooterLink>
           </FooterColumn>
