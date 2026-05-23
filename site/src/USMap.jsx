@@ -111,12 +111,12 @@ function USMap({ stateData, highlights = [], active, onHover, onLeave, onClick, 
   if (!paths || !bbox) return <div style={{ height: 300, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-3)" }}>Loading map…</div>;
 
   // Hardcoded viewBox for Albers USA: covers CONUS + AK/HI insets
-  // Y: 80 (top of WA/ME) to 620 (bottom of HI/FL), X: -70 (AK) to 920 (ME)
-  const vb = "-70 80 990 540";
+  // Y: 50 (top of WA/ME with margin) to 630 (bottom of HI/FL), X: -70 (AK) to 940 (ME)
+  const vb = "-70 50 1010 580";
   const hasHighlights = highlights.length > 0;
 
   return (
-    <svg viewBox={vb} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block", maxHeight: 380, overflow: "hidden" }}>
+    <svg viewBox={vb} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block", maxHeight: 420, overflow: "hidden" }}>
       <defs>
         <filter id="state-glow" x="-10%" y="-10%" width="120%" height="120%">
           <feDropShadow dx="0" dy="0" stdDeviation="2.5" floodColor="var(--accent)" floodOpacity="0.6" />

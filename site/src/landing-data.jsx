@@ -15,7 +15,7 @@ const ISSUES_LIVE = [
       ['+2.34\u00B0F', 'TODAY VS BASELINE'],
       ['7.9\u03C3', 'PORTLAND, 06/2021'],
     ],
-    href: 'https://uap-corpus.pages.dev',
+    href: 'https://atmosphere.onehundredyears.report',
     viz: 'anomaly-bars',
     discovery: 'Portland, OR \u00B7 116\u00B0F \u00B7 nine degrees beyond any prior record',
     refreshed: '14 days ago',

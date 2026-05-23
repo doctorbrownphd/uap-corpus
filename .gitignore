@@ -36,3 +36,4 @@ dashboard-v2/
 # Temp
 *.log
 .pytest_cache/
+.playwright-mcp/
