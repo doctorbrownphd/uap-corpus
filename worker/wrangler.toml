@@ -1,0 +1,7 @@
+name = "ohy-synthesis"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "1b947fc98ff34e4bbf2cd974ff225abc"

@@ -87,6 +87,7 @@ const TABS = [
   { id: "samenight",  label: "Same-night",      num: "05" },
   { id: "validation", label: "Validation",      num: "06" },
   { id: "narratives", label: "Narratives",      num: "07" },
+  { id: "synthesis", label: "Synthesis",       num: "08" },
 ];
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
@@ -171,63 +172,93 @@ function App() {
         </div>
       </div>
 
-      {/* Top bar */}
-      <header className="topbar">
-        <div className="brand">
-          {/* Chronicle decade ruler icon */}
-          <a href="https://onehundredyears.report" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <svg width="14" height="56" viewBox="0 0 18 72" style={{ marginRight: 14 }}>
-              <line x1="0" y1="0" x2="0" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
-              <line x1="0" y1="0"  x2="12" y2="0"  stroke="var(--accent)" strokeWidth="1.5"/>
-              <line x1="0" y1="8"  x2="7"  y2="8"  stroke="var(--accent)" strokeWidth="0.8"/>
-              <line x1="0" y1="16" x2="7"  y2="16" stroke="var(--accent)" strokeWidth="0.8"/>
-              <line x1="0" y1="24" x2="12" y2="24" stroke="var(--accent)" strokeWidth="1.5"/>
-              <line x1="0" y1="32" x2="7"  y2="32" stroke="var(--accent)" strokeWidth="0.8"/>
-              <line x1="0" y1="40" x2="7"  y2="40" stroke="var(--accent)" strokeWidth="0.8"/>
-              <line x1="0" y1="48" x2="12" y2="48" stroke="var(--accent)" strokeWidth="1.5"/>
-              <line x1="0" y1="56" x2="7"  y2="56" stroke="var(--accent)" strokeWidth="0.8"/>
-              <line x1="0" y1="64" x2="7"  y2="64" stroke="var(--accent)" strokeWidth="0.8"/>
-              <line x1="0" y1="72" x2="12" y2="72" stroke="var(--accent)" strokeWidth="1.5"/>
+      {/* Masthead */}
+      <header className="topbar" style={{
+        display: "grid", gridTemplateColumns: "1fr auto",
+        alignItems: "end", padding: "28px 32px 22px",
+        borderBottom: "1px solid var(--border-1)",
+        background: "linear-gradient(180deg, var(--bg-1), transparent)",
+        gap: 32,
+      }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 18 }}>
+          {/* Chronicle ruler-mark SVG */}
+          <a href="https://onehundredyears.report" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginTop: 4 }}>
+            <svg width="14" height="56" viewBox="0 0 18 72">
+              <line x1="0" y1="0" x2="0" y2="72" stroke="#C9A84C" strokeWidth="1.5"/>
+              <line x1="0" y1="0"  x2="12" y2="0"  stroke="#C9A84C" strokeWidth="1.5"/>
+              <line x1="0" y1="8"  x2="7"  y2="8"  stroke="#C9A84C" strokeWidth="0.8"/>
+              <line x1="0" y1="16" x2="7"  y2="16" stroke="#C9A84C" strokeWidth="0.8"/>
+              <line x1="0" y1="24" x2="12" y2="24" stroke="#C9A84C" strokeWidth="1.5"/>
+              <line x1="0" y1="32" x2="7"  y2="32" stroke="#C9A84C" strokeWidth="0.8"/>
+              <line x1="0" y1="40" x2="7"  y2="40" stroke="#C9A84C" strokeWidth="0.8"/>
+              <line x1="0" y1="48" x2="12" y2="48" stroke="#C9A84C" strokeWidth="1.5"/>
+              <line x1="0" y1="56" x2="7"  y2="56" stroke="#C9A84C" strokeWidth="0.8"/>
+              <line x1="0" y1="64" x2="7"  y2="64" stroke="#C9A84C" strokeWidth="0.8"/>
+              <line x1="0" y1="72" x2="12" y2="72" stroke="#C9A84C" strokeWidth="1.5"/>
             </svg>
           </a>
-          <div className="brand-title">
-            <span style={{ fontFamily: "'Cormorant Garamond', var(--f-serif)", fontWeight: 600, letterSpacing: "0.25em", fontSize: 10, color: "var(--accent)" }}>One Hundred Years of</span>
-            <b style={{ fontFamily: "'Playfair Display', var(--f-serif)", letterSpacing: "-0.01em" }}>UFO Witness Reports</b>
+          <div>
+            <div style={{
+              fontFamily: "'Space Mono', var(--f-mono)", fontSize: 10,
+              letterSpacing: "0.2em", textTransform: "uppercase",
+              color: "var(--text-3)", marginBottom: 8,
+            }}>One Hundred Years of</div>
+            <h1 style={{
+              fontFamily: "'Playfair Display', var(--f-serif)",
+              fontSize: 52, fontWeight: 600, lineHeight: 0.95,
+              margin: 0, letterSpacing: "-0.012em", color: "var(--text-0)",
+            }}>The <em style={{ color: "#C9A84C", fontStyle: "italic", fontWeight: 400 }}>Sighting</em></h1>
+            <div style={{
+              fontFamily: "var(--f-serif)", fontStyle: "italic",
+              color: "var(--text-3)", fontSize: 17, marginTop: 10,
+              maxWidth: 720,
+            }}>A sociolinguistic corpus. 118 years of data. Analyzed. Visualized. Open.</div>
           </div>
         </div>
-        <div className="topbar-right">
-          <div className="search">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-              <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.4" />
-              <path d="M11 11l3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-            </svg>
-            <input id="search-input" type="text"
-                   placeholder="search terms, places, archetypes…"
-                   value={query} onChange={(e) => setQuery(e.target.value)} />
-            <kbd>⌘K</kbd>
-          </div>
-          <button
-            className="theme-toggle"
-            onClick={() => setTweak("theme", t.theme === "dark" ? "light" : "dark")}
-            title={t.theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-            style={{
-              background: "none", border: "1px solid var(--border-1)",
-              color: "var(--text-2)", cursor: "pointer",
-              fontFamily: "var(--f-mono)", fontSize: 11,
-              padding: "4px 10px", borderRadius: 3,
-              display: "flex", alignItems: "center", gap: 6,
-              whiteSpace: "nowrap", flexShrink: 0,
-            }}
-          >
-            <span style={{ fontSize: 14, lineHeight: 1 }}>{t.theme === "dark" ? "\u2600" : "\u263E"}</span>
-            <span>{t.theme === "dark" ? "light" : "dark"}</span>
-          </button>
-          <div className="topbar-meta">
-            <span><span className="live-dot" />OPEN PIPELINE · REPRODUCIBLE</span>
-            <span>READING: PASSIVE / CULTURAL-PRIMING / OBSERVATIONAL</span>
-          </div>
+        <div style={{
+          fontFamily: "var(--f-mono)", fontSize: 10.5,
+          letterSpacing: "0.1em", textAlign: "right", lineHeight: 1.7,
+        }}>
+          <div><span style={{ color: "var(--text-3)" }}>ISSUE </span><span style={{ color: "var(--text-1)", fontWeight: 700 }}>01 / 12</span></div>
+          <div><span style={{ color: "var(--text-3)" }}>WINDOW </span><span style={{ color: "var(--text-1)", fontWeight: 700 }}>1905 – 2023</span></div>
+          <div><span style={{ color: "var(--text-3)" }}>REPORTS </span><span style={{ color: "var(--text-1)", fontWeight: 700 }}>111,961</span></div>
+          <div><span style={{ color: "var(--text-3)" }}>UPDATED </span><span style={{ color: "var(--text-1)", fontWeight: 700 }}>22 MAY 2026</span></div>
         </div>
       </header>
+
+      {/* Search + theme toggle bar */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 12,
+        padding: "8px 32px", borderBottom: "1px solid var(--border-1)",
+        background: "var(--bg-1)",
+      }}>
+        <div className="search">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.4" />
+            <path d="M11 11l3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
+          <input id="search-input" type="text"
+                 placeholder="search terms, places, archetypes…"
+                 value={query} onChange={(e) => setQuery(e.target.value)} />
+          <kbd>⌘K</kbd>
+        </div>
+        <button
+          className="theme-toggle"
+          onClick={() => setTweak("theme", t.theme === "dark" ? "light" : "dark")}
+          title={t.theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+          style={{
+            background: "none", border: "1px solid var(--border-1)",
+            color: "var(--text-2)", cursor: "pointer",
+            fontFamily: "var(--f-mono)", fontSize: 11,
+            padding: "4px 10px", borderRadius: 3,
+            display: "flex", alignItems: "center", gap: 6,
+            whiteSpace: "nowrap", flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 14, lineHeight: 1 }}>{t.theme === "dark" ? "\u2600" : "\u263E"}</span>
+          <span>{t.theme === "dark" ? "light" : "dark"}</span>
+        </button>
+      </div>
 
       {/* Stat row */}
       <div className="statrow">
@@ -291,6 +322,7 @@ function App() {
         {tab === "validation" && <ValidationTab data={data} tt={tt} />}
         {tab === "narratives" && <NarrativesTab data={data} tt={tt} query={query}
                                                 onJumpTab={setTab} onSelectArchetype={setSelectedArchetype} />}
+        {tab === "synthesis" && <SynthesisTab data={data} />}
       </main>
 
       {/* Footer */}
