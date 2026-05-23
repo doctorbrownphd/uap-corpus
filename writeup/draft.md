@@ -275,3 +275,12 @@ The interactive dashboard at [dashboard URL] allows readers to search the corpus
 ## Acknowledgments
 
 Data sourced from the National UFO Reporting Center (nuforc.org), used with research permission. Any errors of methodology, interpretation, or framing are the author's alone.
+
+---
+
+*Report 01 of 10 in the One Hundred Years series.*
+[ufo.onehundredyears.report](https://ufo.onehundredyears.report)
+
+**Contact:** hello@onehundredyears.report
+**License:** MIT
+**Repository:** github.com/doctorbrownphd/uap-corpus
